@@ -6,7 +6,9 @@ const app = express();
 app.use(express.json());
 
 // 1) Middleware
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 // 3)routes
 
