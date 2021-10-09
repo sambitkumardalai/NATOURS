@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const hpp = require('hpp');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
@@ -13,10 +14,23 @@ const app = express();
 app.use(express.json());
 
 // 1) golbal Middlewares
-// app.use(helmet());
+app.use(helmet());
 // data sanitization against nosql query injection
-// app.use(mongoSanitize());
-// app.use(xss());
+app.use(mongoSanitize());
+app.use(xss());
+
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'ratingsQuantity',
+      'ratingsAverage',
+      'maxGroupSize',
+      'difficulty',
+      'price',
+    ],
+  })
+);
 // logging in to development environment
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
