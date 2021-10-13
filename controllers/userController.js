@@ -10,16 +10,6 @@ const filterObj = (obj, ...allowedFields) => {
   });
   return newObj;
 };
-exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-  res.status(200).json({
-    status: 'success',
-    results: users.length,
-    data: {
-      users,
-    },
-  });
-});
 exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.body.password || req.body.passwordConfirm) {
     return next(
@@ -52,21 +42,13 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getUser = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
-  if (!user) {
-    return next(new AppError('User not found !!', 404));
-  }
-  res.status(200).json({
-    status: 'success',
-    data: { user },
-  });
-});
 exports.createUser = (req, res) => {
   res.status(500).json({
     status: 'error',
-    message: 'This route is not yet defined!',
+    message: 'This route is not defined! please use signup!',
   });
 };
+exports.getAllUsers = factory.getAll(User);
+exports.getUser = factory.getOne(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
