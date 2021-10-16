@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -14,7 +15,12 @@ const reviewRouter = require('./routes/reviewRoutes');
 const app = express();
 app.use(express.json());
 
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
 // 1) golbal Middlewares
+app.use(express.static(path.join(__dirname, 'public')));
+// set security http headers
 app.use(helmet());
 // data sanitization against nosql query injection
 app.use(mongoSanitize());
@@ -51,7 +57,9 @@ app.use((req, res, next) => {
   next();
 });
 // 3)routes
-
+app.use('/', (req, res, next) => {
+  res.status(200).render('base');
+});
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
