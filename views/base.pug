@@ -1,12 +1,13 @@
 doctype
 html(lang='en')
   head
-    meta(charset='utf-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' )
-    link(rel='stylesheet' href='/css/style.css' )
-    link(rel='shortcut icon' type='/image/png' href='/img/favicon.png' )
-    title Natours | #{title}
+    block head  
+     meta(charset='utf-8')
+     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' )
+     link(rel='stylesheet' href='/css/style.css' )
+     link(rel='shortcut icon' type='/image/png' href='/img/favicon.png' )
+     title Natours | #{title}
   body
   //-  header
   include _header
@@ -15,3 +16,4 @@ html(lang='en')
     h1 this is a placeholder heading
   //- footer
   include _footer
+  script(src=`/js/mapbox.js`) 
