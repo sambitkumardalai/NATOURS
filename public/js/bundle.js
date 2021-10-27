@@ -6642,13 +6642,12 @@ exports.displayMap = void 0;
 
 /* eslint-disable */
 var displayMap = function displayMap(locations) {
-  mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A';
+  mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtYml0c2tkMyIsImEiOiJja3V5cGcwcTEwcWJrMnZxcWVlZTg4d3Q5In0.2HWnoEZnNVjfBINDt5G_Yw';
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy',
-    scrollZoom: false // center: [-118.113491, 34.111745],
-    // zoom: 10,
-    // interactive: false
+    style: 'mapbox://styles/mapbox/streets-v11',
+    scrollZoom: false //   center: [-118.113491, 34.111745],
+    //   zoom: 4,
 
   });
   var bounds = new mapboxgl.LngLatBounds();
@@ -9339,7 +9338,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60975" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51595" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
