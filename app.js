@@ -9,6 +9,7 @@ const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+const compression = require('compression');
 
 const viewRouter = require('./routes/viewRoutes');
 const tourRouter = require('./routes/tourRoutes');
@@ -24,10 +25,11 @@ app.set('views', path.join(__dirname, 'views'));
 // 1) golbal Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
 // set security http headers
-app.use(helmet({contentSecurityPolicy: false}));
+app.use(helmet({ contentSecurityPolicy: false }));
 // data sanitization against nosql query injection
 app.use(mongoSanitize());
 app.use(xss());
+app.use(compression());
 
 app.use(
   hpp({
@@ -53,10 +55,9 @@ const limiter = rateLimit({
   message: 'Too many requests😵..Please try again in an hour',
 });
 app.use('/api', limiter);
-
 app.use((req, res, next) => {
   req.requsetTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 // 3)routes
