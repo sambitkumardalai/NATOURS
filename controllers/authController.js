@@ -34,7 +34,7 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -46,7 +46,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
   const url = `${req.protocol}://${req.get('host')}/me`;
   // const url = `${req.protocol}://localhost:3000/me`;
-  console.log(url);
+  // console.log(url);
   await new Email(newUser, url).sendWelcome();
   const token = signToken(newUser._id);
   createSendToken(newUser, 201, res);
@@ -89,7 +89,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  // console.log(decoded);
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
     return next(
@@ -117,7 +117,7 @@ exports.isLoggedIn = async (req, res, next) => {
         token,
         process.env.JWT_SECRET
       );
-      console.log(decoded);
+      // console.log(decoded);
       const currentUser = await User.findById(decoded.id);
       if (!currentUser) {
         return next();
@@ -207,9 +207,9 @@ exports.resetPassword = async (req, res, next) => {
 };
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // get user from collection
-  console.log('hi');
+  // console.log('hi');
   const user = await User.findById(req.user.id).select('+password');
-  console.log(req.user.id);
+  // console.log(req.user.id);
   // chek if posted current password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
     return next(new AppError('Your current password is wrong', 401));
