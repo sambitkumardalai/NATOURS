@@ -24,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 // 1) golbal Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
 // set security http headers
-app.use(helmet());
+app.use(helmet({contentSecurityPolicy: false}));
 // data sanitization against nosql query injection
 app.use(mongoSanitize());
 app.use(xss());
