@@ -18,7 +18,7 @@ mongoose
     // console.log(con.connections);
     console.log('DB connection successful 😎');
   });
-port = process.env.port || 3000;
+port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`Server listening on ${port} 😎`);
 });
@@ -31,10 +31,10 @@ process.on('unhandledRejection', (err) => {
   });
 });
 
-process.on('uncaughtException',err=>{
+process.on('uncaughtException', (err) => {
   console.log(err);
   console.log('UNCAUGHT EXCEPTION 💥 shutting down...');
   server.close(() => {
     process.exit(1);
   });
-})
+});
