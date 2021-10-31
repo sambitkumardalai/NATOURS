@@ -38,3 +38,10 @@ process.on('uncaughtException', (err) => {
     process.exit(1);
   });
 });
+
+process.on('SIGTERM', () => {
+  console.log('👋 Sigterm received. Shutting down gracefully');
+  server.close(() => {
+    console.log('💥 Process Terminated');
+  });
+});
