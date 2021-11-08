@@ -4,8 +4,11 @@ import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+<<<<<<< HEAD
 import { showAlert } from './alerts';
 
+=======
+>>>>>>> 773133f77b45961e745d7bda09a6aba42d1ae295
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
@@ -67,6 +70,9 @@ if (bookBtn) {
     bookTour(tourId);
   });
 }
+<<<<<<< HEAD
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('success', alertMessage, 20);
+=======
+>>>>>>> 773133f77b45961e745d7bda09a6aba42d1ae295
