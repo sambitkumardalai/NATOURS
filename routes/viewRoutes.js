@@ -4,7 +4,11 @@ const authController = require('../controllers/authController');
 const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
+<<<<<<< HEAD
 router.use(viewsController.alerts);
+=======
+
+>>>>>>> 773133f77b45961e745d7bda09a6aba42d1ae295
 router.get(
   '/',
   // bookingController.createBookingCheckout,
