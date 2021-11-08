@@ -4,15 +4,6 @@ const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
-<<<<<<< HEAD
-exports.alerts = (req, res, next) => {
-  const {alert}=req.query;
-  if (alert === 'booking') res.locals.alert = 'Your booking was successful!';
-  next();
-};
-
-=======
->>>>>>> 773133f77b45961e745d7bda09a6aba42d1ae295
 exports.getOverview = catchAsync(async (req, res, next) => {
   // 1) Get tour data from collection
   const tours = await Tour.find();
